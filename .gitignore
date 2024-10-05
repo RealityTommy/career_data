@@ -1,0 +1,60 @@
+# Python Bytecode and Logs
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.log
+
+# Virtual Environment
+venv/
+ENV/
+env/
+
+# Environment Variables
+.env
+
+# Cache Files
+*.cache
+*.tmp
+.cache/
+*.sqlite3
+
+# Docker Files
+docker-compose.override.yml
+docker-compose.override.yaml
+docker-compose.yml~
+docker-compose.yaml~
+*.env
+Dockerfile~
+docker-data/
+logs/
+tmp/
+
+# Prisma Files
+prisma/.env
+node_modules/
+.prisma/
+
+# Database Files
+*.db
+*.sql
+pgdata/
+postgres_data/
+
+# VS Code Configuration
+.vscode/
+
+# PyCharm IDE Configuration
+.idea/
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+
+# Other IDEs
+*.swp
+*~
+.DS_Store
+
+# Git conflict resolution files
+*.orig
+

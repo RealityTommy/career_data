@@ -7,6 +7,7 @@ generator client {
   provider = "prisma-client-py"
 }
 
+// Career model
 model Career {
   id          String   @id @default(uuid()) @db.Uuid
   name        String   @unique
@@ -15,6 +16,7 @@ model Career {
   updatedAt   DateTime @updatedAt
 }
 
+// Industry model
 model Industry {
   id          String   @id @default(uuid()) @db.Uuid
   name        String   @unique
@@ -23,6 +25,7 @@ model Industry {
   updatedAt   DateTime @updatedAt
 }
 
+// Credential model
 model Credential {
   id          String   @id @default(uuid()) @db.Uuid
   name        String   @unique
@@ -31,10 +34,55 @@ model Credential {
   updatedAt   DateTime @updatedAt
 }
 
+// Skill model
 model Skill {
   id          String   @id @default(uuid()) @db.Uuid
   name        String   @unique
   description String?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+}
+
+// ONET Industry model
+model OnetIndustry {
+  id        String   @id @default(uuid()) @db.Uuid
+  name      String   @unique
+  code      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// ONET Occupation model
+model OnetOccupation {
+  id               String             @id @default(uuid()) @db.Uuid
+  name             String
+  code             String
+  percent_employed Float
+  category         OnetCareerCategory
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @updatedAt
+}
+
+// ONET Skill model
+model OnetSkill {
+  id        String   @id @default(uuid()) @db.Uuid
+  name      String   @unique
+  code      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// ONET Ability model
+model OnetAbility {
+  id        String   @id @default(uuid()) @db.Uuid
+  name      String   @unique
+  code      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// ONET "category" of careers based on the percentage of workers employed in a specific industry.
+enum OnetCareerCategory {
+  MOST
+  SOME
 }

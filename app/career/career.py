@@ -6,7 +6,7 @@ from .model import CareerModel
 # Initialize the router with a prefix for all career endpoints
 router = APIRouter(
     prefix="/v1/careers",  # All endpoints will be prefixed with /careers
-    tags=["careers", "v1"],  # Optionally, you can add tags for documentation purposes
+    tags=["Careers", "Version 1"],  # Optionally, you can add tags for documentation purposes
 )
 
 

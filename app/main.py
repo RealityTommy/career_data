@@ -1,21 +1,7 @@
-from fastapi import FastAPI, Response
-from prisma import Prisma
+from fastapi import FastAPI
+from app.career.career import router as career_router
 
 app = FastAPI()
-prisma = Prisma()
 
-
-@app.on_event("startup")
-async def startup():
-    await prisma.connect()
-
-
-@app.on_event("shutdown")
-async def shutdown():
-    await prisma.disconnect()
-
-
-# Server Status
-@app.get("/")
-def root():
-    return Response("Server is running.")
+# Include the career router (prefix is already set in the router)
+app.include_router(career_router)

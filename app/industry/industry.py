@@ -1,7 +1,6 @@
 from fastapi import APIRouter, HTTPException
 from app.prisma import prisma, connect_prisma, disconnect_prisma
-from .schema import IndustryCreate, IndustryUpdate
-from .model import IndustryModel
+from .schema import IndustryCreate, IndustryUpdate, IndustryModel
 
 # Initialize the router with a versioned prefix
 router = APIRouter(prefix="/v1/industries", tags=["Industries", "Version 1"])

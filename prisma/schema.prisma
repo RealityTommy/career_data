@@ -51,8 +51,6 @@ model OnetImport {
 
   industries  OnetIndustry[]   @relation(name: "OnetImportIndustries")
   occupations OnetOccupation[] @relation(name: "OnetImportOccupations")
-  skills      OnetSkill[]      @relation(name: "OnetImportSkills")
-  abilities   OnetAbility[]    @relation(name: "OnetImportAbilities")
 }
 
 // ONET Industry model
@@ -75,26 +73,4 @@ model OnetOccupation {
   updatedAt DateTime @updatedAt
 
   imports OnetImport[] @relation(name: "OnetImportOccupations")
-}
-
-// ONET Skill model
-model OnetSkill {
-  id        String   @id @default(uuid()) @db.Uuid
-  name      String   @unique
-  code      String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  imports OnetImport[] @relation(name: "OnetImportSkills")
-}
-
-// ONET Ability model
-model OnetAbility {
-  id        String   @id @default(uuid()) @db.Uuid
-  name      String   @unique
-  code      String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  imports OnetImport[] @relation(name: "OnetImportAbilities")
 }

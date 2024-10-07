@@ -1,12 +1,14 @@
 from fastapi import APIRouter, HTTPException
 from app.prisma import prisma, connect_prisma, disconnect_prisma
-from .schema import CareerCreate, CareerUpdate
-from .model import CareerModel
+from .schema import CareerCreate, CareerUpdate, CareerModel
 
 # Initialize the router with a prefix for all career endpoints
 router = APIRouter(
     prefix="/v1/careers",  # All endpoints will be prefixed with /careers
-    tags=["Careers", "Version 1"],  # Optionally, you can add tags for documentation purposes
+    tags=[
+        "Careers",
+        "Version 1",
+    ],  # Optionally, you can add tags for documentation purposes
 )
 
 

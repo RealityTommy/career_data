@@ -7,7 +7,7 @@ from .schema import OnetOccupationAPISchema, OnetOccupationModel
 
 # Initialize the router
 router = APIRouter(
-    prefix="/v1/onetoccupations", tags=["ONET", "Occupations", "Version 1"]
+    prefix="/v1/onetoccupations", tags=["ONET", "ONET Occupations", "Version 1"]
 )
 
 # ONET API credentials

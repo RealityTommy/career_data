@@ -8,7 +8,7 @@ from datetime import datetime
 
 # Initialize the router
 router = APIRouter(
-    prefix="/v1/onetindustries", tags=["ONET", "Industries", "Version 1"]
+    prefix="/v1/onetindustries", tags=["ONET", "ONET Industries", "Version 1"]
 )
 
 # ONET API credentials

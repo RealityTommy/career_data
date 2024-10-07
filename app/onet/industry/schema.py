@@ -1,5 +1,4 @@
 from pydantic import BaseModel
-from typing import Optional
 from datetime import datetime
 
 
@@ -14,17 +13,29 @@ class OnetIndustryCreate(BaseModel):
 
 # Schema for updating an existing ONET Industry
 class OnetIndustryUpdate(BaseModel):
-    title: Optional[str] = None
-    code: Optional[str] = None
+    title: str
+    code: str
 
     class Config:
         from_attributes = True
 
 
-# Schema for displaying ONET industry data fetched from the API
+# Schema for displaying ONET industry data fetched from the API (without id, createdAt, updatedAt)
+class OnetIndustryAPISchema(BaseModel):
+    title: str
+    code: str
+
+    class Config:
+        from_attributes = True
+
+
+# Schema for returning Industry data in API responses from the database (with id, createdAt, updatedAt)
 class OnetIndustryModel(BaseModel):
     id: str
     title: str
     code: str
     createdAt: datetime
     updatedAt: datetime
+
+    class Config:
+        from_attributes = True

@@ -5,7 +5,7 @@ from datetime import datetime
 # Model used for returning Industry data in API responses
 class OnetIndustryModel(BaseModel):
     id: str
-    name: str
+    title: str
     code: str
     createdAt: datetime
     updatedAt: datetime

@@ -7,13 +7,11 @@ from app.credential.credential import router as credential_router
 from app.skill.skill import router as skill_router
 
 # Import ONET routers
-from app.onet.imports.imports import router as imports_router
-from app.onet.industry.industry import router as onet_industry_router
-from app.onet.occupation.occupation import router as onet_occupation_router
-
-
-# Import BLS routers
-from app.bls.imports.imports import router as bls_imports_router
+from app.external_data.onet.imports.imports import router as imports_router
+from app.external_data.onet.industry.industry import router as onet_industry_router
+from app.external_data.onet.occupation.occupation import (
+    router as onet_occupation_router,
+)
 
 app = FastAPI()
 
@@ -27,6 +25,3 @@ app.include_router(skill_router)
 app.include_router(imports_router)
 app.include_router(onet_industry_router)
 app.include_router(onet_occupation_router)
-
-# Register BLS routers
-app.include_router(bls_imports_router)

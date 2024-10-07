@@ -1,7 +1,6 @@
 from fastapi import APIRouter, HTTPException
 from app.prisma import prisma, connect_prisma, disconnect_prisma
-from .schema import CredentialCreate, CredentialUpdate
-from .model import CredentialModel
+from .schema import CredentialCreate, CredentialUpdate, CredentialModel
 
 # Initialize the router with versioned prefix and specified tags
 router = APIRouter(prefix="/v1/credentials", tags=["Credentials", "Version 1"])

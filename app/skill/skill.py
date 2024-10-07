@@ -1,7 +1,6 @@
 from fastapi import APIRouter, HTTPException
 from app.prisma import prisma, connect_prisma, disconnect_prisma
-from .schema import SkillCreate, SkillUpdate
-from .model import SkillModel
+from .schema import SkillCreate, SkillUpdate, SkillModel
 
 # Initialize the router with a versioned prefix
 router = APIRouter(prefix="/v1/skills", tags=["Skills", "Version 1"])

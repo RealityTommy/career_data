@@ -21,8 +21,11 @@ class SkillUpdate(BaseModel):
         from_attributes = True
 
 
-# Response model to include timestamps
+# Response model to include timestamps and ID
 class SkillModel(SkillCreate):
     id: str
     createdAt: datetime
     updatedAt: datetime
+
+    class Config:
+        from_attributes = True

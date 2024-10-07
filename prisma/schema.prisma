@@ -68,13 +68,11 @@ model OnetIndustry {
 
 // ONET Occupation model
 model OnetOccupation {
-  id               String             @id @default(uuid()) @db.Uuid
-  name             String
-  code             String
-  percent_employed Float
-  category         OnetCareerCategory
-  createdAt        DateTime           @default(now())
-  updatedAt        DateTime           @updatedAt
+  id        String   @id @default(uuid()) @db.Uuid
+  title     String   @unique
+  code      String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   imports OnetImport[] @relation(name: "OnetImportOccupations")
 }
@@ -99,10 +97,4 @@ model OnetAbility {
   updatedAt DateTime @updatedAt
 
   imports OnetImport[] @relation(name: "OnetImportAbilities")
-}
-
-// ONET "category" of careers based on the percentage of workers employed in a specific industry.
-enum OnetCareerCategory {
-  MOST
-  SOME
 }

@@ -4,6 +4,7 @@ from fastapi import APIRouter, HTTPException
 from requests.auth import HTTPBasicAuth
 from app.prisma import prisma, connect_prisma, disconnect_prisma
 from .schema import OnetOccupationAPISchema, OnetOccupationModel
+import xml.etree.ElementTree as ET
 
 # Initialize the router
 router = APIRouter(
@@ -33,11 +34,11 @@ def fetch_all_occupations():
     url = f"{ONET_API_BASE_URL}/occupations"
     occupations = []
     page = 1
-    page_size = 20  # ONET returns 20 results by default
+    page_size = 20  # ONET returns 20 results per request by default
 
     try:
         while True:
-            # Add pagination parameters to the request
+            # Make request with pagination parameters
             response = requests.get(
                 url,
                 params={"start": (page - 1) * page_size + 1, "end": page * page_size},
@@ -46,24 +47,23 @@ def fetch_all_occupations():
             response.raise_for_status()
 
             if "xml" in response.headers.get("Content-Type", "").lower():
-                import xml.etree.ElementTree as ET
-
+                # Parse XML response
                 root = ET.fromstring(response.content)
 
-                # Extract occupations
+                # Extract occupations from the XML response
                 occupations_on_page = []
                 for occupation in root.findall(".//occupation"):
                     code = occupation.find("code").text
                     title = occupation.find("title").text
                     occupations_on_page.append({"code": code, "title": title})
 
-                # If no more occupations are returned, break the loop
+                # Break the loop if no more occupations are returned
                 if not occupations_on_page:
                     break
 
                 occupations.extend(occupations_on_page)
 
-                # Check if fewer occupations were returned than the page size, indicating the last page
+                # If fewer than 20 occupations were returned, stop pagination
                 if len(occupations_on_page) < page_size:
                     break
 

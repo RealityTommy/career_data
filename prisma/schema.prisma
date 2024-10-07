@@ -43,13 +43,27 @@ model Skill {
   updatedAt   DateTime @updatedAt
 }
 
+// ONET Import model
+model OnetImport {
+  id        String   @id @default(uuid()) @db.Uuid
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  industries  OnetIndustry[]   @relation(name: "OnetImportIndustries")
+  occupations OnetOccupation[] @relation(name: "OnetImportOccupations")
+  skills      OnetSkill[]      @relation(name: "OnetImportSkills")
+  abilities   OnetAbility[]    @relation(name: "OnetImportAbilities")
+}
+
 // ONET Industry model
 model OnetIndustry {
   id        String   @id @default(uuid()) @db.Uuid
-  name      String   @unique
-  code      String
+  title     String   @unique
+  code      String   @unique
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  imports OnetImport[] @relation(name: "OnetImportIndustries")
 }
 
 // ONET Occupation model
@@ -61,6 +75,8 @@ model OnetOccupation {
   category         OnetCareerCategory
   createdAt        DateTime           @default(now())
   updatedAt        DateTime           @updatedAt
+
+  imports OnetImport[] @relation(name: "OnetImportOccupations")
 }
 
 // ONET Skill model
@@ -70,6 +86,8 @@ model OnetSkill {
   code      String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  imports OnetImport[] @relation(name: "OnetImportSkills")
 }
 
 // ONET Ability model
@@ -79,6 +97,8 @@ model OnetAbility {
   code      String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  imports OnetImport[] @relation(name: "OnetImportAbilities")
 }
 
 // ONET "category" of careers based on the percentage of workers employed in a specific industry.
